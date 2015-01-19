@@ -74,6 +74,8 @@ typedef NS_ENUM(NSUInteger, JNJProgressButtonState) {
     [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(progressButtonWasTapped:)]];
     
     self.buttonImageView = [UIImageView new];
+    self.circleDiameter = kJNJProgressCircleDiameter;
+    self.stopWidth = kJNJProgressStopWidth;
     [self addSubview:self.buttonImageView];
 }
 
@@ -327,10 +329,10 @@ typedef NS_ENUM(NSUInteger, JNJProgressButtonState) {
 - (CGRect)rectForProgressCircle
 {
     return (CGRect) {
-        CGRectGetMidX(self.bounds) - kJNJProgressCircleDiameter / 2.0f,
-        CGRectGetMidY(self.bounds) - kJNJProgressCircleDiameter / 2.0f,
-        kJNJProgressCircleDiameter,
-        kJNJProgressCircleDiameter
+        CGRectGetMidX(self.bounds) - self.circleDiameter / 2.0f,
+        CGRectGetMidY(self.bounds) - self.circleDiameter / 2.0f,
+        self.circleDiameter,
+        self.circleDiameter
     };
 }
 
@@ -379,7 +381,7 @@ typedef NS_ENUM(NSUInteger, JNJProgressButtonState) {
 - (CALayer *)boxLayerInRect:(CGRect)rect
                   fillColor:(UIColor *)fillColor
 {
-    CGFloat boxSize = kJNJProgressStopWidth;
+    CGFloat boxSize = self.stopWidth;
     
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:(CGRect) { CGPointZero, { boxSize, boxSize } }];
     
