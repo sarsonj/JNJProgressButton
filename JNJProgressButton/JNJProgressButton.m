@@ -202,6 +202,10 @@ typedef NS_ENUM(NSUInteger, JNJProgressButtonState) {
     }
 }
 
+-(void)cancelProgress {
+    [self endProgressWithState:JNJProgressButtonStateUnstarted];
+}
+
 #pragma mark - Actions
 
 - (void)progressButtonWasTapped:(UIGestureRecognizer *)gestureRecognizer
